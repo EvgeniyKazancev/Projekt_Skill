@@ -16,7 +16,7 @@ public class XLSXParser {
     public List<Student> studentRead() throws IOException {
         FileInputStream fis = new FileInputStream("src/main/resources/universityInfo.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
-        XSSFSheet sheet = workbook.getSheet("Студенты");
+        XSSFSheet sheet = workbook.getSheetAt(0);
         Iterator<Row> itr = sheet.iterator();
         List<Student> studentList = new ArrayList<>();
         itr.next();
@@ -41,7 +41,7 @@ public class XLSXParser {
     public List<University> universityRead() throws IOException {
         FileInputStream fis = new FileInputStream("src/main/resources/universityInfo.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
-        XSSFSheet sheet = workbook.getSheet("Университеты");
+        XSSFSheet sheet = workbook.getSheetAt(1);
         Iterator<Row> itr = sheet.iterator();
         List<University> universityList =new ArrayList<>();
         itr.next();

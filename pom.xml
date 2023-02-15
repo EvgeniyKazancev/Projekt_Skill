@@ -26,7 +26,7 @@
          <dependency>
              <groupId>com.guicedee.services</groupId>
              <artifactId>apache-poi-ooxml</artifactId>
-             <version>1.2.2.1</version>
+             <version>62</version>
          </dependency>
 
      </dependencies>
