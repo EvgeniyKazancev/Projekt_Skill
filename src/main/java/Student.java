@@ -1,23 +1,14 @@
-public class Student {
-    String fullName;
-    String universityId;
-    int currentCourseNumber;
-    float avgExamScore;
+public class Student  {
+   private String universityId;
+   private String fullName;
+   private int currentCourseNumber;
+   private float avgExamScore;
 
-
-    public Student(String fullName, String universityId, int currentCourseNumber, float avgExamScore) {
-        this.fullName = fullName;
+    public Student(String universityId, String fullName, int currentCourseNumber, float avgExamScore) {
         this.universityId = universityId;
+        this.fullName = fullName;
         this.currentCourseNumber = currentCourseNumber;
         this.avgExamScore = avgExamScore;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getUniversityId() {
@@ -27,6 +18,14 @@ public class Student {
     public void setUniversityId(String universityId) {
         this.universityId = universityId;
     }
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
 
     public int getCurrentCourseNumber() {
         return currentCourseNumber;
@@ -43,4 +42,17 @@ public class Student {
     public void setAvgExamScore(float avgExamScore) {
         this.avgExamScore = avgExamScore;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "fullName='" + fullName + '\'' +
+                ", universityId='" + universityId + '\'' +
+                ", currentCourseNumber=" + currentCourseNumber +
+                ", avgExamScore=" + avgExamScore +
+                '}';
+    }
+
+
+
 }

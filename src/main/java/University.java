@@ -1,22 +1,32 @@
-public class University {
+import java.util.Comparator;
+
+public class University   {
     String id;
-    String fulName;
+    String fullName;
     String shortName;
     int yearOfFoundation;
     StudyProfile mainProfile;
+
+
+
     enum StudyProfile {
         MEDICINE("Медицина"),
         MATHEMATICS("Математика"),
         MECHANICS("Механика"),
         PHYSICS("Физика"),
         PSYCHOLOGY("Психология"),
-        HISTORY("История");
-        StudyProfile(String значение) {
+        HISTORY("История"),
+        LINGUISTICS ("Язык");
+        StudyProfile(String prof) {
         }
     }
-    public University(String id, String fulName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {
+
+
+
+
+    public University(String id, String fullName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {
         this.id = id;
-        this.fulName = fulName;
+        this.fullName = fullName;
         this.shortName = shortName;
         this.yearOfFoundation = yearOfFoundation;
         this.mainProfile = mainProfile;
@@ -31,11 +41,11 @@ public class University {
     }
 
     public String getFulName() {
-        return fulName;
+        return fullName;
     }
 
     public void setFulName(String fulName) {
-        this.fulName = fulName;
+        this.fullName = fulName;
     }
 
     public String getShortName() {
@@ -52,6 +62,16 @@ public class University {
 
     public void setYearOfFoundation(int yearOfFoundation) {
         this.yearOfFoundation = yearOfFoundation;
+    }
+    @Override
+    public String toString() {
+        return "University{" +
+                "id='" + id + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", shortName='" + shortName + '\'' +
+                ", yearOfFoundation=" + yearOfFoundation +
+                ", mainProfile=" + mainProfile +
+                '}';
     }
 
 }

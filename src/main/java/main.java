@@ -1,11 +1,29 @@
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class main {
-    public static void main(String[] args) {
 
-        University university = new University( "1","Ural Politech University","UPI",1930, University.StudyProfile.MEDICINE);
-        Student student = new Student( "Evgeniy Kazantsev","1",2,4);
-        System.out.println(ToStringBuilder.reflectionToString(university));
-        System.out.println(ToStringBuilder.reflectionToString(student));
+
+    public static void main(String[] args) throws IOException {
+        XLSXParser xlsxParser = new XLSXParser();
+        StdComparator stdComparator =
+                UtilityClass.getMyStudent(EnumCompareStudent.STUDENT_AVG);
+        xlsxParser.studentRead().stream()
+                .sorted(stdComparator)
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+        UniComparator uniComparator =
+                UtilityClass.getMyUniversity(EnumCompareUniversity.UNIVERSITY_YEAR);
+        xlsxParser.universityRead().stream()
+                .sorted(uniComparator)
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+
+
     }
+    /** XLSXParser xlsxParser = new XLSXParser();
+     xlsxParser.studentRead().forEach(System.out::println);
+     xlsxParser.universityRead().forEach(System.out::println);
+     */
+
 }
