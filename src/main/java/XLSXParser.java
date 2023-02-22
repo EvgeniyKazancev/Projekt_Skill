@@ -43,10 +43,10 @@ public class XLSXParser {
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet sheet = workbook.getSheetAt(1);
         Iterator<Row> itr = sheet.iterator();
-        List<University> universityList =new ArrayList<>();
+        List<University> universityList = new ArrayList<>();
         itr.next();
         while (itr.hasNext()) {
-            Row row = itr.next(); // РїРѕР»СѓС‡РёР»Рё СЂСЏРґ
+            Row row = itr.next(); // получили ряд
             Cell cell = row.getCell(0);
             String universityId = cell.getStringCellValue();
             cell = row.getCell(1);

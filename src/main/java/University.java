@@ -1,22 +1,29 @@
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Comparator;
 
 public class University   {
-    String id;
-    String fullName;
-    String shortName;
-    int yearOfFoundation;
-    StudyProfile mainProfile;
+    @SerializedName("ID")
+  private String id;
+    @SerializedName("Название")
+   private String fullName;
+    @SerializedName("Короткое название")
+    private String shortName;
+    @SerializedName("Год")
+   private int yearOfFoundation;
+    @SerializedName("Специфика")
+    private StudyProfile mainProfile;
 
 
 
     enum StudyProfile {
-        MEDICINE("РњРµРґРёС†РёРЅР°"),
-        MATHEMATICS("РњР°С‚РµРјР°С‚РёРєР°"),
-        MECHANICS("РњРµС…Р°РЅРёРєР°"),
-        PHYSICS("Р¤РёР·РёРєР°"),
-        PSYCHOLOGY("РџСЃРёС…РѕР»РѕРіРёСЏ"),
-        HISTORY("РСЃС‚РѕСЂРёСЏ"),
-        LINGUISTICS ("РЇР·С‹Рє");
+        MEDICINE("Медицина"),
+        MATHEMATICS("Математика"),
+        MECHANICS("Механика"),
+        PHYSICS("Физика"),
+        PSYCHOLOGY("Психология"),
+        HISTORY("История"),
+        LINGUISTICS ("Язык");
         StudyProfile(String prof) {
         }
     }
