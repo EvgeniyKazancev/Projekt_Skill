@@ -33,6 +33,16 @@
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
         </dependency>
+        <dependency>
+            <groupId>ch.obermuhlner</groupId>
+            <artifactId>big-math</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dmfs</groupId>
+            <artifactId>optional</artifactId>
+            <version>1.20</version>
+        </dependency>
 
     </dependencies>
 

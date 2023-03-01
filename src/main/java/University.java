@@ -47,12 +47,12 @@ public class University   {
         this.id = id;
     }
 
-    public String getFulName() {
+    public String getFullName() {
         return fullName;
     }
 
-    public void setFulName(String fulName) {
-        this.fullName = fulName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getShortName() {
@@ -70,6 +70,15 @@ public class University   {
     public void setYearOfFoundation(int yearOfFoundation) {
         this.yearOfFoundation = yearOfFoundation;
     }
+
+    public StudyProfile getMainProfile() {
+        return mainProfile;
+    }
+
+    public void setMainProfile(StudyProfile mainProfile) {
+        this.mainProfile = mainProfile;
+    }
+
     @Override
     public String toString() {
         return "University{" +
