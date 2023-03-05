@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.List;
 
 public class Statistics {
@@ -6,9 +5,9 @@ public class Statistics {
     private int numberOfStudByProfile;
     private University.StudyProfile trainingProfNum;
     private int numberOfUniversityProf;
-    private List<String> nameUniversity;
+    private String nameUniversity;
 
-    public Statistics(float averScoreExam, int numberOfStudByProfile, University.StudyProfile trainingProfNum, int numberOfUniversityProf, List<String> nameUniversity) {
+    public Statistics(float averScoreExam, int numberOfStudByProfile, University.StudyProfile trainingProfNum, int numberOfUniversityProf, String nameUniversity) {
         this.averScoreExam = averScoreExam;
         this.numberOfStudByProfile = numberOfStudByProfile;
         this.trainingProfNum = trainingProfNum;
@@ -40,7 +39,7 @@ public class Statistics {
         this.trainingProfNum = trainingProfNum;
     }
 
-    public void setNameUniversity(List<String> nameUniversity) {
+    public void setNameUniversity(String nameUniversity) {
         this.nameUniversity = nameUniversity;
     }
 
@@ -54,7 +53,7 @@ public class Statistics {
         this.numberOfUniversityProf = numberOfUniversityProf;
     }
 
-    public List<String> getNameUniversity() {
+    public String getNameUniversity() {
         return nameUniversity;
     }
 }

@@ -51,12 +51,7 @@ public class XlsWriter {
                 row.createCell(1).setCellValue(statistics.getNumberOfStudByProfile());
                 row.createCell(2).setCellValue(statistics.getTrainingProfNum().toString());
                 row.createCell(3).setCellValue(statistics.getNumberOfUniversityProf());
-                List<String> strings = statistics.getNameUniversity();
-                StringBuilder stringBuilder = new StringBuilder();
-                for (String s : strings) {
-                    stringBuilder.append(s).append(", ");
-                }
-                row.createCell(4).setCellValue(stringBuilder.toString());
+                row.createCell(4).setCellValue(statistics.getNameUniversity());
             }
 
             //Создание и запись файла
