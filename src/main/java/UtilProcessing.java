@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.DoubleStream;
@@ -6,7 +7,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toMap;
 
 public class UtilProcessing {
-    public static List<Statistics> Process(List<Student> studentList, List<University> universityList) {
+    public  List<Statistics> Process(List<Student> studentList, List<University> universityList) {
 
         Stream<University.StudyProfile> studyProfileStream = Stream.of(University.StudyProfile.values());
         Stream<List<University>> listStream = studyProfileStream.map(studyProfile ->

@@ -1,6 +1,8 @@
 import javax.imageio.IIOException;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,56 +33,76 @@ public class main {
          Stream.concat(universityStream.limit(3).map(JsonUtil::serializeUniversity),universityStream1.limit(3).map(JsonUtil::serializeUniversity).map(JsonUtil::deserializeUniversity))
          .forEach(System.out::println);*/
         //Мое решение((
-        Stream<Student> studentStream1 = xlsxParser.studentRead().stream();
-        Stream<Student> studentStream2 = xlsxParser.studentRead().stream();
-        Stream.concat(
-                        studentStream1
-                                .limit(3)
-                                .map(object -> {
-                                    String studentSerialize;
-                                    studentSerialize = JsonUtil.serializeStudent(object);
-                                    return studentSerialize;
-                                }),
-                        studentStream2
-                                .limit(3)
-                                .map(object -> {
-                                    String studentSerialize = null;
-                                    studentSerialize = JsonUtil.serializeStudent(object);
-                                    return studentSerialize;
-                                })
-                                .map(studentSerialize -> {
-                                    Student newStudentList;
-                                    newStudentList = JsonUtil.deserializeStudent(studentSerialize);
-                                    return newStudentList;
-                                }))
-                .forEach(System.out::println);
-        Stream<University> universityStream1 = xlsxParser.universityRead().stream();
-        Stream<University> universityStream2 = xlsxParser.universityRead().stream();
-        Stream.concat(
-                        universityStream1
-                                .limit(3)
-                                .map(object -> {
-                                    String universitySerialize;
-                                    universitySerialize = JsonUtil.serializeUniversity(object);
-                                    return universitySerialize;
-                                }),
-                        universityStream2
-                                .limit(3)
-                                .map(object -> {
-                                    String universitySerialize;
-                                    universitySerialize = JsonUtil.serializeUniversity(object);
-                                    return universitySerialize;
-                                })
-                                .map(universitySerialize -> {
-                                    Student newUniversityList;
-                                    newUniversityList = JsonUtil.deserializeStudent(universitySerialize);
-                                    return newUniversityList;
-                                }))
-                .forEach(System.out::println);
+        /**  Stream<Student> studentStream1 = xlsxParser.studentRead().stream();
+         Stream<Student> studentStream2 = xlsxParser.studentRead().stream();
+         Stream.concat(
+         studentStream1
+         .limit(3)
+         .map(object -> {
+         String studentSerialize;
+         studentSerialize = JsonUtil.serializeStudent(object);
+         return studentSerialize;
+         }),
+         studentStream2
+         .limit(3)
+         .map(object -> {
+         String studentSerialize = null;
+         studentSerialize = JsonUtil.serializeStudent(object);
+         return studentSerialize;
+         })
+         .map(studentSerialize -> {
+         Student newStudentList;
+         newStudentList = JsonUtil.deserializeStudent(studentSerialize);
+         return newStudentList;
+         }))
+         .forEach(System.out::println);
+         Stream<University> universityStream1 = xlsxParser.universityRead().stream();
+         Stream<University> universityStream2 = xlsxParser.universityRead().stream();
+         Stream.concat(
+         universityStream1
+         .limit(3)
+         .map(object -> {
+         String universitySerialize;
+         universitySerialize = JsonUtil.serializeUniversity(object);
+         return universitySerialize;
+         }),
+         universityStream2
+         .limit(3)
+         .map(object -> {
+         String universitySerialize;
+         universitySerialize = JsonUtil.serializeUniversity(object);
+         return universitySerialize;
+         })
+         .map(universitySerialize -> {
+         Student newUniversityList;
+         newUniversityList = JsonUtil.deserializeStudent(universitySerialize);
+         return newUniversityList;
+         }))
+         .forEach(System.out::println);
 
 
 
-        /**  String studentSerialize = JsonUtil.serializeStudentList(xlsxParser.studentRead());
+         */
+
+           // задние четыре
+        UtilProcessing utilProcessing = new UtilProcessing();
+        List<Statistics> newStat = utilProcessing.Process(xlsxParser.studentRead(), xlsxParser.universityRead());
+        newStat.stream()
+                .collect(Collectors.toList());
+
+        XlsWriter xlsWriter = new XlsWriter();
+        xlsWriter.writeXls(newStat, "src/main/resources/statistics.xlsx");
+
+        /** Stream<List<Statistics>> studentStream = xlsxParser.studentRead().stream()
+         .map(new Function<Student, List<Statistics>>() {
+        @Override public List<Statistics> apply(Student student) {
+
+        return student.str;
+        }
+        });
+*/
+
+         /**  String studentSerialize = JsonUtil.serializeStudentList(xlsxParser.studentRead());
          System.out.println("Student JSON:\n" + studentSerialize + "\n");
          String universitySerialize = JsonUtil.serializeUniversityList(xlsxParser.universityRead());
          System.out.println("University JSON:\n" + universitySerialize + "\n");
