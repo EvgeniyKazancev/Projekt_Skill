@@ -85,8 +85,8 @@ public class main {
          */
 
            // задние четыре
-        UtilProcessing utilProcessing = new UtilProcessing();
-        List<Statistics> newStat = utilProcessing.Process(xlsxParser.studentRead(), xlsxParser.universityRead());
+
+        List<Statistics> newStat = UtilProcessing.Process(xlsxParser.studentRead(), xlsxParser.universityRead());
         newStat.stream()
                 .collect(Collectors.toList());
 
