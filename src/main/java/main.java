@@ -1,15 +1,25 @@
+import org.apache.logging.log4j.LogManager;
+
 import javax.imageio.IIOException;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.MarshalException;
 import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.logging.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class main {
+    private static final Logger logger = Logger.getLogger(main.class.getName());
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, JAXBException {
+
+
         XLSXParser xlsxParser = new XLSXParser();
+
+
         /**  StdComparator stdComparator =                  // Второе задание
          UtilityClass.getMyStudent(EnumCompareStudent.STUDENT_AVG);
          xlsxParser.studentRead().stream()
@@ -84,7 +94,7 @@ public class main {
 
          */
 
-           // задние четыре
+        // задние четыре
 
         List<Statistics> newStat = UtilProcessing.Process(xlsxParser.studentRead(), xlsxParser.universityRead());
         newStat.stream()
@@ -93,16 +103,13 @@ public class main {
         XlsWriter xlsWriter = new XlsWriter();
         xlsWriter.writeXls(newStat, "src/main/resources/statistics.xlsx");
 
-        /** Stream<List<Statistics>> studentStream = xlsxParser.studentRead().stream()
-         .map(new Function<Student, List<Statistics>>() {
-        @Override public List<Statistics> apply(Student student) {
+        MarshallingXml mar = new MarshallingXml();
+        mar.marshalling(newStat);
 
-        return student.str;
-        }
-        });
-*/
+        logger.log(Level.INFO, "Программа успешно завершена ");
 
-         /**  String studentSerialize = JsonUtil.serializeStudentList(xlsxParser.studentRead());
+
+        /**  String studentSerialize = JsonUtil.serializeStudentList(xlsxParser.studentRead());
          System.out.println("Student JSON:\n" + studentSerialize + "\n");
          String universitySerialize = JsonUtil.serializeUniversityList(xlsxParser.universityRead());
          System.out.println("University JSON:\n" + universitySerialize + "\n");

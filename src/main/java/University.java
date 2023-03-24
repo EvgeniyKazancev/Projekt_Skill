@@ -1,19 +1,25 @@
 import com.google.gson.annotations.SerializedName;
 
+import javax.xml.bind.annotation.*;
 import java.util.Comparator;
 
-public class University   {
-    @SerializedName("ID")
-  private String id;
-    @SerializedName("Название")
-   private String fullName;
-    @SerializedName("Короткое название")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = {"universityID", "universityName", "universityProfile"})
+@XmlRootElement(name = "UniversityInfo")
+public class University {
+    @XmlElementWrapper(name = "universityEntry")
+    @XmlElement(name = "universityID")
+    private String id;
+    @XmlElementWrapper(name = "universityEntry")
+    @XmlElement(name = "universityName")
+    private String fullName;
+    @XmlTransient
     private String shortName;
-    @SerializedName("Год")
-   private int yearOfFoundation;
-    @SerializedName("Специфика")
+    @XmlTransient
+    private int yearOfFoundation;
+    @XmlElementWrapper(name = "universityEntry")
+    @XmlElement(name = "universityProfile")
     private StudyProfile mainProfile;
-
 
 
     enum StudyProfile {
@@ -23,12 +29,11 @@ public class University   {
         PHYSICS("Физика"),
         PSYCHOLOGY("Психология"),
         HISTORY("История"),
-        LINGUISTICS ("Язык");
+        LINGUISTICS("Язык");
+
         StudyProfile(String prof) {
         }
     }
-
-
 
 
     public University(String id, String fullName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {

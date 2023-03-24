@@ -2,14 +2,18 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 import java.util.function.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toMap;
 
 public class UtilProcessing {
-    public static   List<Statistics> Process(List<Student> studentList, List<University> universityList) {
+    private static final Logger logg = Logger.getLogger(UtilProcessing.class.getName());
 
+    public static List<Statistics> Process(List<Student> studentList, List<University> universityList) {
+        logg.log(Level.INFO, "Процесс сбора статистики запущен");
         Stream<University.StudyProfile> studyProfileStream = Stream.of(University.StudyProfile.values());
         Stream<List<University>> listStream = studyProfileStream.map(studyProfile ->
                 universityList.stream()
@@ -38,9 +42,11 @@ public class UtilProcessing {
                     universityList12.forEach(university -> stringBuilder.append(university.getShortName()).append(", "));
 
                     return new Statistics(avgScoreF, (int) sumStd, universityList12.get(0).getMainProfile(), universityList12.size(), stringBuilder.toString());
-                });
 
+                });
+        logg.log(Level.INFO, "Сортировка произведенна успешно");
 
         return statisticsStream.toList();
     }
+
 }

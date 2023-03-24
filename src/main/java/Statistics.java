@@ -1,10 +1,20 @@
+import javax.xml.bind.annotation.*;
 import java.util.List;
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = {"universityProfile","averageScore"})
+@XmlRootElement(name = "statisticsInfo" )
 public class Statistics {
+    @XmlElementWrapper(name = "statisticEntry")
+    @XmlElement(name = "averageScore")
     private float averScoreExam ;
+    @XmlTransient
     private int numberOfStudByProfile;
+    @XmlElementWrapper(name = "statisticEntry")
+    @XmlElement(name = "universityProfile")
     private University.StudyProfile trainingProfNum;
+    @XmlTransient
     private int numberOfUniversityProf;
+    @XmlTransient
     private String nameUniversity;
 
     public Statistics(float averScoreExam, int numberOfStudByProfile, University.StudyProfile trainingProfNum, int numberOfUniversityProf, String nameUniversity) {

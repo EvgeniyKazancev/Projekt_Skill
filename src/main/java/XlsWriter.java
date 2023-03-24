@@ -10,12 +10,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class XlsWriter {
-
+    private static final Logger log = Logger.getLogger(XlsWriter.class.getName());
 
     public void writeXls(List<Statistics> stat, String fileName) throws IOException {
+        log.log(Level.INFO,"Запись файла начата");
         try
+
                 (Workbook wb = new XSSFWorkbook()) {
 
 
@@ -40,7 +44,7 @@ public class XlsWriter {
             headerRow.getCell(3).setCellStyle(headerStyle);
             headerRow.createCell(4).setCellValue("Названия университетов");
             headerRow.getCell(4).setCellStyle(headerStyle);
-
+            log.log(Level.INFO, "Таблица Создана успешно");
             int rowNum = 1;
 
 
@@ -55,12 +59,14 @@ public class XlsWriter {
             }
 
             //Создание и запись файла
-            try
-                    (FileOutputStream fos = new FileOutputStream(fileName)) {
+            try {
+                FileOutputStream fos = new FileOutputStream(fileName);
                 wb.write(fos);
-
-
+            }catch (IOException e){
+                log.log(Level.SEVERE,"Ошибка", e);
             }
+
+            log.log(Level.INFO, "Файл создан успешно");
         }
     }
 }

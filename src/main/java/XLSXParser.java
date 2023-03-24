@@ -11,35 +11,54 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import java.util.function.Supplier;
+import java.util.logging.*;
+
 
 public class XLSXParser {
-    public List<Student> studentRead() throws IOException {
-        FileInputStream fis = new FileInputStream("src/main/resources/universityInfo.xlsx");
-        XSSFWorkbook workbook = new XSSFWorkbook(fis);
-        XSSFSheet sheet = workbook.getSheetAt(0);
-        Iterator<Row> itr = sheet.iterator();
-        List<Student> studentList = new ArrayList<>();
-        itr.next();
-        while (itr.hasNext()) {
-            Row row = itr.next();
-            Cell cell = row.getCell(0);
-            String universityId = cell.getStringCellValue();
-            cell = row.getCell(1);
-            String fullName = cell.getStringCellValue();
-            cell = row.getCell(2);
-            int currentCourseNumber =(int) cell.getNumericCellValue();
-            cell = row.getCell(3);
-            float avgExamScore =(float) cell.getNumericCellValue();
-            Student student = new Student(universityId,fullName,currentCourseNumber,avgExamScore);
-            studentList.add(student);
-        }
-        fis.close();
+    private static final Logger logger = (Logger) Logger.getLogger(XLSXParser.class.getName());
 
+
+    public List<Student> studentRead() throws IOException {
+
+        FileInputStream fis = new FileInputStream("src/main/resources/universityInfo.xlsx");
+
+        logger.log(Level.INFO,"Файл считан ");
+
+
+
+
+         XSSFWorkbook workbook = new XSSFWorkbook(fis);
+         XSSFSheet sheet = workbook.getSheetAt(0);
+         Iterator<Row> itr = sheet.iterator();
+         List<Student> studentList = new ArrayList<>();
+         itr.next();
+         while (itr.hasNext()) {
+             Row row = itr.next();
+             Cell cell = row.getCell(0);
+             String universityId = cell.getStringCellValue();
+             cell = row.getCell(1);
+             String fullName = cell.getStringCellValue();
+             cell = row.getCell(2);
+             int currentCourseNumber = (int) cell.getNumericCellValue();
+             cell = row.getCell(3);
+             float avgExamScore = (float) cell.getNumericCellValue();
+             Student student = new Student(universityId, fullName, currentCourseNumber, avgExamScore);
+             studentList.add(student);
+
+         }
+
+
+        fis.close();
+        logger.info("Список студентов создан");
         return studentList;
+
     }
 
     public List<University> universityRead() throws IOException {
         FileInputStream fis = new FileInputStream("src/main/resources/universityInfo.xlsx");
+        logger.info("Файл считан");
+        logger.log(Level.SEVERE,"Error" ,new IOException());
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet sheet = workbook.getSheetAt(1);
         Iterator<Row> itr = sheet.iterator();
@@ -57,11 +76,13 @@ public class XLSXParser {
             int years = (int) cell.getNumericCellValue();
             cell = row.getCell(4);
             String profil = cell.getStringCellValue();
-            University university = new University(universityId,fullName,shortName,years,University.StudyProfile.valueOf(profil));
+            University university = new University(universityId, fullName, shortName, years, University.StudyProfile.valueOf(profil));
             universityList.add(university);
+
         }
         fis.close();
-   return universityList;
+        logger.info("Список университетов создан");
+        return universityList;
     }
 
 

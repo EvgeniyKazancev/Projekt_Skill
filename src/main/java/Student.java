@@ -1,14 +1,22 @@
 import com.google.gson.annotations.SerializedName;
 
-public class Student  {
-    @SerializedName("Id")
-   private String universityId;
-    @SerializedName("Имя")
-   private String fullName;
-    @SerializedName("Курс")
-   private int currentCourseNumber;
-    @SerializedName("Средни балл")
-   private float avgExamScore;
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = {"studentName","universityId","avgScore"}, name = "root")
+@XmlRootElement(name = "studentInfo")
+public class Student {
+    @XmlElementWrapper(name = "studentEntry")
+    @XmlElement(name = "universityId")
+    private String universityId;
+    @XmlElementWrapper(name = "studentEntry")
+    @XmlElement(name = "studentName")
+    private String fullName;
+    @XmlTransient
+    private int currentCourseNumber;
+    @XmlElementWrapper(name = "studentEntry")
+    @XmlElement(name = "avgScore")
+    private float avgExamScore;
 
     public Student(String universityId, String fullName, int currentCourseNumber, float avgExamScore) {
         this.universityId = universityId;
@@ -24,6 +32,7 @@ public class Student  {
     public void setUniversityId(String universityId) {
         this.universityId = universityId;
     }
+
     public String getFullName() {
         return fullName;
     }
@@ -58,7 +67,6 @@ public class Student  {
                 ", avgExamScore=" + avgExamScore +
                 '}';
     }
-
 
 
 }
