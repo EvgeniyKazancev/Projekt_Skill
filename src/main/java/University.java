@@ -1,23 +1,24 @@
 import com.google.gson.annotations.SerializedName;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 import java.util.Comparator;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"universityID", "universityName", "universityProfile"})
-@XmlRootElement(name = "UniversityInfo")
-public class University {
-    @XmlElementWrapper(name = "universityEntry")
+
+
+public class University implements Serializable {
+
     @XmlElement(name = "universityID")
     private String id;
-    @XmlElementWrapper(name = "universityEntry")
+
     @XmlElement(name = "universityName")
     private String fullName;
     @XmlTransient
     private String shortName;
     @XmlTransient
     private int yearOfFoundation;
-    @XmlElementWrapper(name = "universityEntry")
+
     @XmlElement(name = "universityProfile")
     private StudyProfile mainProfile;
 

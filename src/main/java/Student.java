@@ -1,20 +1,21 @@
 import com.google.gson.annotations.SerializedName;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"studentName","universityId","avgScore"}, name = "root")
-@XmlRootElement(name = "studentInfo")
-public class Student {
-    @XmlElementWrapper(name = "studentEntry")
+
+
+public class Student implements Serializable {
+
     @XmlElement(name = "universityId")
     private String universityId;
-    @XmlElementWrapper(name = "studentEntry")
+
     @XmlElement(name = "studentName")
     private String fullName;
     @XmlTransient
     private int currentCourseNumber;
-    @XmlElementWrapper(name = "studentEntry")
+
     @XmlElement(name = "avgScore")
     private float avgExamScore;
 

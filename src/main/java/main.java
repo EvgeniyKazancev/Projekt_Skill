@@ -96,15 +96,23 @@ public class main {
 
         // задние четыре
 
-        List<Statistics> newStat = UtilProcessing.Process(xlsxParser.studentRead(), xlsxParser.universityRead());
-        newStat.stream()
-                .collect(Collectors.toList());
 
-        XlsWriter xlsWriter = new XlsWriter();
-        xlsWriter.writeXls(newStat, "src/main/resources/statistics.xlsx");
+//        newStat.stream()
+//                .collect(Collectors.toList());
+
+//        XlsWriter xlsWriter = new XlsWriter();
+//        xlsWriter.writeXls(newStat, "src/main/resources/statistics.xlsx");
+        List<Student> studentList = xlsxParser.studentRead();
+        List<University> universityList = xlsxParser.universityRead();
+        List<Statistics> newStat = UtilProcessing.Process(studentList, universityList);
+
+        ExportStructure exportStructure = new ExportStructure(universityList, studentList, newStat);
+
+        JsonRead jsonRead = new JsonRead();
+        jsonRead.jsonReader(exportStructure);
 
         MarshallingXml mar = new MarshallingXml();
-        mar.marshalling(newStat);
+        mar.marshalling(exportStructure);
 
         logger.log(Level.INFO, "Программа успешно завершена ");
 

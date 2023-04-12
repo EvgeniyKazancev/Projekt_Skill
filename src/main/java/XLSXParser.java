@@ -56,9 +56,10 @@ public class XLSXParser {
     }
 
     public List<University> universityRead() throws IOException {
+
         FileInputStream fis = new FileInputStream("src/main/resources/universityInfo.xlsx");
         logger.info("Файл считан");
-        logger.log(Level.SEVERE,"Error" ,new IOException());
+       // logger.log(Level.SEVERE,"Error" ,new IOException());
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet sheet = workbook.getSheetAt(1);
         Iterator<Row> itr = sheet.iterator();

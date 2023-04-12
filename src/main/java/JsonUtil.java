@@ -65,4 +65,9 @@ public class JsonUtil {
                 gson.fromJson(json, type);
 
     }
+    public static String serializeExportStructure (ExportStructure exportStructure){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return
+                gson.toJson(exportStructure);
+    }
 }
