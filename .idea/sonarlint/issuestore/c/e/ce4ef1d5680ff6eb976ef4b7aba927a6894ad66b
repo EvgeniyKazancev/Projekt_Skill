@@ -1,0 +1,16 @@
+
+0
+java:S1220""Move this file to a named package.
+Z
+java:S1128"DRemove this unused import 'org.apache.poi.hssf.usermodel.HSSFSheet'.(®…óŸ
+b
+java:S1128"GRemove this unused import 'org.apache.poi.hssf.usermodel.HSSFWorkbook'.(¾§—Œıÿÿÿÿ
+[
+java:S1128"@Remove this unused import 'org.apache.poi.ss.util.SheetBuilder'.(‰“Ìÿÿÿÿÿ
+F
+java:S1128	"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+H
+java:S1128
+"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+E
+java:S1128"/Remove this unused import 'java.util.Iterator'.(¥ÍòÕ

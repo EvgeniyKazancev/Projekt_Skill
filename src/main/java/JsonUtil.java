@@ -1,14 +1,20 @@
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class JsonUtil {
     private JsonUtil() {
     }
-
-
+    public static <T> String modelListToJson(List<T> modelList){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return
+                gson.toJson(modelList);
+    }
     public static String serializeStudent(Student student) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return
@@ -20,20 +26,6 @@ public class JsonUtil {
         return
                 gson.toJson(university);
     }
-
-    public static String serializeStudentList(List<Student> studentList) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        return
-                gson.toJson(studentList);
-
-    }
-
-    public static String serializeUniversityList(List<University> universityList) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        return
-                gson.toJson(universityList);
-    }
-
 
     public static Student deserializeStudent(String json) {
         Gson gson = new GsonBuilder().create();
@@ -53,7 +45,7 @@ public class JsonUtil {
         Type type = new TypeToken<List<Student>>() {
         }.getType();
         return
-                gson.fromJson(json,type);
+                gson.fromJson(json, type);
 
     }
 
@@ -65,7 +57,8 @@ public class JsonUtil {
                 gson.fromJson(json, type);
 
     }
-    public static String serializeExportStructure (ExportStructure exportStructure){
+
+    public static String serializeExportStructure(ExportStructure exportStructure) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return
                 gson.toJson(exportStructure);

@@ -20,7 +20,7 @@ public class JsonRead {
             os.close();
 
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Ошибка сериализации" + e);
+            logger.log(Level.SEVERE, "Ошибка сериализации:" + e);
         }
 
     }
